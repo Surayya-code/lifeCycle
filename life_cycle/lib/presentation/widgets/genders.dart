@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:life_cycle/presentation/constants/text_Styles.dart';
 
 class Genders extends StatelessWidget {
   final String genderText;
@@ -24,10 +25,7 @@ class Genders extends StatelessWidget {
         ),
         Text(
           genderText,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style:kTextStyle,
         ),
       ],
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../constants/text_Styles.dart';
 import '../../widgets/container.dart';
 import '../../widgets/genders.dart';
 
@@ -33,11 +34,53 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(
             child: Row(
-              children: const [
+              children: [
                 Expanded(
-                  child: MyContainer(),
+                  child: MyContainer(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RotatedBox(
+                            quarterTurns: -1,
+                            child: Text(
+                              "BOY",
+                              style: kTextStyle,
+                            )),
+                          const  SizedBox(width: 10,),
+                        RotatedBox(
+                            quarterTurns: -1,
+                            child: Text("170", style: kNumStyle)),
+                             const  SizedBox(width: 10,),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ButtonTheme(
+                              minWidth: 36,
+                              child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                               foregroundColor: Colors.teal ),
+                                onPressed: (){
+                                print("ust button kliklendi");
+                              },
+                               child: const Icon(FontAwesomeIcons.plus,size: 20,),),
+                            ),
+                             ButtonTheme(
+                              minWidth: 36,
+                               child: OutlinedButton(
+                               style: OutlinedButton.styleFrom(
+                               foregroundColor: Colors.teal ),
+                                onPressed: (){
+                                print("alt button kliklendi");
+                                                         },
+                               child: const Icon(FontAwesomeIcons.minus,size: 20,),),
+                             ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                Expanded(
+                const Expanded(
                   child: MyContainer(),
                 ),
               ],
@@ -48,21 +91,14 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "How many times a week do you exercise?",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: kTextStyle,
                     ),
                     Text(
                       '${gymDay.round()}',
-                      style: const TextStyle(
-                        color: Colors.teal,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: kNumStyle,
                     ),
                     Slider.adaptive(
                       value: gymDay,
@@ -83,21 +119,14 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "How many cigarettes do you smoke a day?",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: kTextStyle,
                     ),
                     Text(
                       '${cigarettes.round()}',
-                      style: const TextStyle(
-                        color: Colors.teal,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: kNumStyle,
                     ),
                     Slider.adaptive(
                       value: cigarettes,
