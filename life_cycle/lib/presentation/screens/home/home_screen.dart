@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../data/user_data.dart';
 import '../../constants/text_Styles.dart';
 import '../../widgets/container.dart';
 import '../../widgets/genders.dart';
+import 'result_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -15,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? selectedGender;
+  String selectedGender="WOMAN";
   double cigarettes = 15.0;
   double gymDay = 1;
   int heightSize = 170;
@@ -23,11 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal.shade300,
       appBar: AppBar(
         title: const Text(
           'LIFE CYCLE',
-          style: TextStyle(color: Colors.black54),
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
       ),
@@ -142,6 +143,27 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          ButtonTheme(
+            height: 50,
+            child: TextButton(
+              style:  TextButton.styleFrom(backgroundColor: Colors.white),
+            onPressed: (){
+              Navigator.push(context, 
+              MaterialPageRoute(builder:(context)=>
+                ResultScreen(
+                 userData: UserData(
+                 cigarettes: cigarettes,
+                 gymDay: gymDay, 
+                 heightSize: hashCode,
+                 weight: weight, selectedGender:selectedGender,),
+               ),
+                ),
+                 );
+
+            }, 
+            child: Text("CALCULATE",
+            style: kTextStyle,)),
+          )
         ],
       ),
     );
