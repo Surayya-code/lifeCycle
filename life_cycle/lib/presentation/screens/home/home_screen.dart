@@ -18,6 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String? selectedGender;
   double cigarettes = 15.0;
   double gymDay = 1;
+  int heightSize = 170;
+  int weight = 60;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,51 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: MyContainer(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        RotatedBox(
-                            quarterTurns: -1,
-                            child: Text(
-                              "BOY",
-                              style: kTextStyle,
-                            )),
-                          const  SizedBox(width: 10,),
-                        RotatedBox(
-                            quarterTurns: -1,
-                            child: Text("170", style: kNumStyle)),
-                             const  SizedBox(width: 10,),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ButtonTheme(
-                              minWidth: 36,
-                              child: OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                               foregroundColor: Colors.teal ),
-                                onPressed: (){
-                                print("ust button kliklendi");
-                              },
-                               child: const Icon(FontAwesomeIcons.plus,size: 20,),),
-                            ),
-                             ButtonTheme(
-                              minWidth: 36,
-                               child: OutlinedButton(
-                               style: OutlinedButton.styleFrom(
-                               foregroundColor: Colors.teal ),
-                                onPressed: (){
-                                print("alt button kliklendi");
-                                                         },
-                               child: const Icon(FontAwesomeIcons.minus,size: 20,),),
-                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                    child: outlinedButtonRow('HEIGHT',),
                   ),
                 ),
-                const Expanded(
-                  child: MyContainer(),
+                 Expanded(
+                  child: MyContainer(
+                     child: outlinedButtonRow('WEIGHT',),
+                  ),
                 ),
               ],
             ),
@@ -180,6 +144,69 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Row outlinedButtonRow(String label) {
+    
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        RotatedBox(
+            quarterTurns: -1,
+            child: Text(
+             label,
+              style: kTextStyle,
+            )),
+        const SizedBox(
+          width: 10,
+        ),
+        RotatedBox(
+            quarterTurns: -1,
+            child: Text(
+              label=='HEIGHT'? heightSize.toString() : weight.toString(),
+              style: kNumStyle)),
+        const SizedBox(
+          width: 10,
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ButtonTheme(
+              minWidth: 36,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(foregroundColor: Colors.teal),
+                onPressed: () {
+                  setState(() {
+                    label=='HEIGHT'? heightSize++ : weight++;
+                  });
+                  print("ust button kliklendi");
+                },
+                child: const Icon(
+                  FontAwesomeIcons.plus,
+                  size: 20,
+                ),
+              ),
+            ),
+            ButtonTheme(
+              minWidth: 36,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(foregroundColor: Colors.teal,),
+                onPressed: () {
+                  setState(() {
+                     label=='HEIGHT'? heightSize-- : weight--;
+                  });
+                  print("alt button kliklendi");
+                },
+                child: const Icon(
+                  FontAwesomeIcons.minus,
+                  size: 20,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
