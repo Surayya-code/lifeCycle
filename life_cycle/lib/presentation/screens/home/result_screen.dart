@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:life_cycle/presentation/constants/text_styles.dart';
 
 import '../../../data/user_data.dart';
+import '../../../data/calculate.dart';
 
 class ResultScreen extends StatelessWidget {
   final UserData userData;
@@ -20,7 +21,7 @@ class ResultScreen extends StatelessWidget {
           flex: 8,
           child: Center(
               child: Text(
-            userData.selectedGender,
+            Calculate(userData: userData).calc().round().toString(),
             style: kTextStyle,
           )),
         ),
